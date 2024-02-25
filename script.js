@@ -7,7 +7,7 @@ gain.connect(audioContext.destination) ;
 oscillator.start() ;
 
 // Initialisation des fréquences
-function createFrequencies(nbNotes) {
+function createFrequencies (nbNotes) {
     //const freqMin = 100.0 ;
     //const freqMax = 5000.0 ;
     let nmax = 3*12 ;
@@ -22,11 +22,32 @@ function createFrequencies(nbNotes) {
     return frequencies ;
 }
 
+// Initialisation des amplitudes
+function createAmplitudes (nbNotes) {
+    let amplitudes = [] ;
+    for (let i=0 ; i<nbNotes ; i++) {
+        amplitudes.push(Math.random()) ;
+        //amplitudes.push(1.0) ;
+    }
+    return amplitudes ;
+}
+
+// Initialisation des types
+function createTypes (nbNotes) {
+    let types = [] ;
+    const tableauTypes = ["sine", "square", "sawtooth", "triangle"] ;
+    for (i=0 ; i<nbNotes ; i++) {
+        types.push(tableauTypes[Math.floor(Math.random() * tableauTypes.length)]) ;
+    }
+    return types ;
+}
+
 // Fonction de jeu d'une note
-function note (frequency) {
+function note (frequency, amplitude, type) {
     return new Promise ((resolve) => {
         oscillator.frequency.value = frequency ;
-        gain.gain.linearRampToValueAtTime(1.0, audioContext.currentTime + 0.01) ;
+        oscillator.type = type ;
+        gain.gain.linearRampToValueAtTime(amplitude, audioContext.currentTime + 0.01) ;
         setTimeout(() => {
             gain.gain.linearRampToValueAtTime(0.0, audioContext.currentTime + 0.01) ;
             resolve() ;
@@ -35,11 +56,14 @@ function note (frequency) {
 }
 
 // Jeu de l'ensemble des notes
+const nbNotes = 100 ;
 async function jeuNotes() {
     audioContext.resume() ;
-    const frequencies = createFrequencies(20) ;
-    for (const frequency of frequencies) {
-        await note(frequency) ;
+    const frequencies = createFrequencies(nbNotes) ;
+    const amplitudes = createAmplitudes(nbNotes) ;
+    const types = createTypes(nbNotes) ;
+    for (i=0 ; i<nbNotes ; i++) {
+        await note(frequencies[i], amplitudes[i], types[i]) ;
     }
 }
 
