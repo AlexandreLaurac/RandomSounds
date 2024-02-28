@@ -155,7 +155,6 @@ function onClickCheckbox (event, checkbox, string) { // Careful ! When this func
             checkbox.checked = true ;
         }
     }
-    console.log(typeRangeForPlay) ;
 }
 
 
@@ -181,47 +180,21 @@ function noteToFreq (note) {
 
 
 // Fonction de création de paramètres aléatoires
-function createRandomSoundParams (freqRange = 440.0, ampRange = 1.0, typeRange = 'sine') {
+function createRandomSoundParams (freqRange, ampRange, typeRange) {
 
-    let frequency, amplitude, type ;
-    
     // Frequency
-    if (typeof freqRange === "number") {
-        frequency = noteToFreq (freqToNote (freqRange)) ;
-    }
-    else if (typeof freqRange === "object" && freqRange.length === 2) {
-        const noteMin = freqToNote (freqRange[0]) ;
-        const noteMax = freqToNote (freqRange[1]) ;
-        let note = Math.floor (Math.random()*(noteMax-noteMin)) + noteMin ;
-        frequency = noteToFreq (note) ;
-    }
-    else {
-        throw TypeError ("bad type for 'freqRange' argument") ;
-    }
+    const noteMin = freqToNote (freqRange[0]) ;
+    const noteMax = freqToNote (freqRange[1]) ;
+    let note = Math.floor (Math.random()*(noteMax-noteMin)) + noteMin ;
+    let frequency = noteToFreq (note) ;
 
     // Amplitude
-    if (typeof ampRange === "number") {
-        amplitude = ampRange ;
-    }
-    else if (typeof ampRange === "object" && ampRange.length === 2) {
-        const ampMin = ampRange[0] ;
-        const ampMax = ampRange[1] ;
-        amplitude = Math.random() * (ampMax - ampMin) + ampMin ;
-    }
-    else {
-        throw TypeError ("bad type for 'ampRange' argument") ;
-    }
+    const ampMin = ampRange[0] ;
+    const ampMax = ampRange[1] ;
+    let amplitude = Math.random() * (ampMax - ampMin) + ampMin ;
 
     // Type of waveform
-    if (typeof typeRange === "string") {
-        type = typeRange ;
-    }
-    else if (typeof typeRange === "object" && typeRange.length >= 1 && typeRange.length <= 4) {
-        type = typeRange[Math.floor (Math.random() * typeRange.length)] ;
-    }
-    else {
-        throw TypeError ("bad type for 'typeRange' argument") ;
-    }
+    let type = typeRange[Math.floor (Math.random() * typeRange.length)] ;
 
     return { frequency : frequency, amplitude : amplitude, type : type } ;
 }
