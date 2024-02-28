@@ -1,0 +1,104 @@
+/* General rules */
+
+:root {
+    --half-margin : 25px ;
+}
+
+body {
+    color : white ;  /* ou "orangered" */
+    background-color : #202020 ;
+}
+
+
+/* Central containers */
+
+#param_container {
+    display : flex ;
+    flex-direction : row ;
+    justify-content : center ;
+}
+
+#numerical_container {
+    margin-right : var(--half-margin) ;
+    display : flex ;
+    flex-direction : column ;
+}
+
+.numerical_pane {
+    padding : 5px 20px 25px 20px ;
+    display : flex ;
+    flex-direction : column ;
+    align-items : center ;
+}
+
+.numerical_range {
+    display : flex ;
+    flex-direction : row ;
+    align-items : center ;
+}
+
+.two_sliders {
+    display : flex ;
+    flex-direction : column ;
+}
+
+#waveforms_container {
+    margin-left : var(--half-margin) ;
+    padding : 0 60px 15px 25px ;
+    display : flex ;
+    flex-direction : column ;
+    justify-content : space-around ;
+}
+
+.waveform_checkbox {
+    display : flex ;
+    flex-direction : row ;
+    align-items : center ;
+}
+
+
+/* Elements */
+
+h1 {
+    margin : 50px 0 30px 0 ;
+    text-align : center ;
+}
+
+h3 {
+    margin-left : 5px ;
+    margin-right : 5px ;
+}
+
+p {
+    margin : 0 ;
+}
+
+.slider {
+    margin : 7px 15px ;
+}
+
+#space {
+    height : 20px ;
+}
+
+input[type=checkbox] {
+    --taille : 25px ;
+    width : var(--taille) ;
+    height : var(--taille) ;
+    margin-right : 20px ;
+}
+
+button {
+    display : block ;
+    margin : 50px auto 0 auto ;
+    padding : 5px 15px ;
+    border-width: 0px ;
+    border-radius : 3px ;
+    background-color : white ;
+    color : black ;
+    font-size : 1em ;
+}
+
+button:active {
+    opacity : 0.8 ;
+}
