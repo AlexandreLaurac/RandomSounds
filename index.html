@@ -3,11 +3,75 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Musique aléatoire</title>
+        <title>Random sounds</title>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
-        <button id="bouton">Clique ici !</button>
+        <h1>Alea</h1>
+        <div id="param_container">
+            <div id="numerical_container">
+
+                <!-- Frequencies -->
+                <fieldset class="numerical_pane">
+                    <legend>
+                        <h3>Frequencies</h3>
+                    </legend>
+                    <p id="min_freq_elt"></p> <!-- text content set inside JS -->
+                    <div class="numerical_range">
+                        <p id="absolute_min_freq_elt"></p> <!-- value set inside JS -->
+                        <div class="two_sliders">
+                            <input id="min_freq_slider" class="slider" type="range">
+                            <input id="max_freq_slider" class="slider" type="range">
+                        </div>
+                        <p id="absolute_max_freq_elt"></p> <!-- value set inside JS -->
+                    </div>
+                    <p id="max_freq_elt"></p> <!-- text content set inside JS -->
+                </fieldset>
+                <div id="space"></div>
+
+                <!-- Amplitudes -->
+                <fieldset class="numerical_pane">
+                    <legend>
+                        <h3>Amplitudes</h3>
+                    </legend>
+                    <p id="min_amp_elt"></p> <!-- text content set inside JS -->
+                    <div class="numerical_range">
+                        <p id="absolute_min_amp_elt"></p> <!-- value set inside JS -->
+                        <div class="two_sliders">
+                            <input id="min_amp_slider" class="slider" type="range" step="any">
+                            <input id="max_amp_slider" class="slider" type="range" step="any">
+                        </div>
+                        <p id="absolute_max_amp_elt"></p> <!-- value set inside JS -->
+                    </div>
+                    <p id="max_amp_elt"></p> <!-- text content set inside JS -->
+                </fieldset>
+            </div>
+
+            <!-- Waveforms -->
+            <fieldset id="waveforms_container">
+                <legend>
+                    <h3>Waveforms</h3>
+                </legend>
+                <div class="waveform_checkbox">
+                    <input id="sine_checkbox" type="checkbox">
+                    <img src="src/sine.png" alt="sine">
+                </div>
+                <div class="waveform_checkbox">
+                    <input id="triangle_checkbox" type="checkbox">
+                    <img src="src/triangle.png" alt="triangle">
+                </div>
+                <div class="waveform_checkbox">
+                    <input id="sawtooth_checkbox" type="checkbox">
+                    <img src="src/sawtooth.png" alt="sawtooth">
+                </div>
+                <div class="waveform_checkbox">
+                    <input id="square_checkbox" type="checkbox">
+                    <img src="src/square.png" alt="square">
+                </div>
+            </fieldset>
+        </div>
+        <button id="bouton">Start</button>
         <script src="script.js"></script>
     </body>
 </html>
