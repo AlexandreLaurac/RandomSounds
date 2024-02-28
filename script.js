@@ -65,7 +65,7 @@ let minAmp = absoluteMinAmp ;
 let maxAmp = absoluteMaxAmp ;
 let ampRangeForPlay = [minAmp, maxAmp] ;
 
-// Initialization regarding minimum frequency
+// Initialization regarding minimum amplitude
 const minAmpElt = document.getElementById("min_amp_elt") ;
 minAmpElt.textContent = "min : " + minAmp ;
 
@@ -89,7 +89,7 @@ minAmpSlider.addEventListener("input", (e) => {
     ampRangeForPlay[0] = minAmp ;
 }) ;
 
-// Initialization regarding maximum frequency
+// Initialization regarding maximum amplitude
 const maxAmpElt = document.getElementById("max_amp_elt") ;
 maxAmpElt.textContent = "max : " + maxAmp ;
 
@@ -158,6 +158,8 @@ function onClickCheckbox (event, checkbox, string) { // Careful ! When this func
 }
 
 
+//------------------------------ Audio ------------------------------//
+
 // Initialisation de l'audio
 const audioContext = new AudioContext() ;
 const oscillator = audioContext.createOscillator() ;
@@ -200,7 +202,8 @@ function createRandomSoundParams (freqRange, ampRange, typeRange) {
 }
 
 // Fonction de jeu d'une note
-const slopeDuration = 0.02 ;
+const soundDuration = 100 ;   // ms
+const slopeDuration = 0.02 ;  // s
 function playSound (frequency, amplitude = 1.0, type = 'sine') {
     return new Promise ((resolve) => {
         oscillator.frequency.value = frequency ;
@@ -216,7 +219,7 @@ function playSound (frequency, amplitude = 1.0, type = 'sine') {
                 //console.log("fin : " + gain.gain.value) ;
                 resolve()
             }, slopeDuration*1000+5) ;
-        }, 100) ;
+        }, soundDuration) ;
     }) ;
 }
 
